@@ -19,6 +19,7 @@ class UserRegistrationView(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
+        # TODO: Исправить вывод ошибок
         if serializer.is_valid():
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

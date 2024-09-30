@@ -17,6 +17,7 @@ def custom_validate_email(email):
 
 
 def custom_validate_password(password):
+    # TODO: Добавить валидацию
     return password
 
 
