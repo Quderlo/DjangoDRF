@@ -25,6 +25,7 @@ class UserRegistrationsSerializer(serializers.ModelSerializer):
             'patronymic':{'required': False,},
         }
 
+
     def validate(self, data):
         custom_validate_register(data)
         return data
