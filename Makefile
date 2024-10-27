@@ -13,3 +13,8 @@ clean-up:
 migrate:
 	venv/bin/python3 src/manage.py makemigrations users
 	venv/bin/python3 src/manage.py migrate
+
+entry-point:
+	export DJANGO_SETTINGS_MODULE=project.settings && venv/bin/python3 src/entrypoint.py
+
+build: db-start migrate
