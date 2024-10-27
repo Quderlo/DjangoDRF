@@ -1,3 +1,7 @@
+start-venv:
+	python3 -m venv venv
+	venv/bin/pip install -r requirements.txt
+
 db-start:
 	docker compose up -d postgres
 

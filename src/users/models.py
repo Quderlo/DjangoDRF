@@ -65,7 +65,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name='Пароль',
         max_length=128,
         error_messages={
-            'blank': 'Пожалуйста, заполните поле пароля.',
+            'required': 'Пожалуйста, заполните поле пароля.',
         }
     )
 
@@ -73,21 +73,21 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name='Почта',
         unique=True,
         error_messages={
-            'blank': 'Пожалуйста, заполните поле почты.',
+            'required': 'Пожалуйста, заполните поле почты.',
         }
     )
     first_name = models.CharField(
         verbose_name='Имя',
         max_length=100,
         error_messages={
-            'blank': 'Пожалуйста, заполните поле имени.',
+            'required': 'Пожалуйста, заполните поле имени.',
         }
     )
     last_name = models.CharField(
         verbose_name='Фамилия',
         max_length=100,
         error_messages={
-            'blank': 'Пожалуйста, заполните поле фамилии.',
+            'required': 'Пожалуйста, заполните поле фамилии.',
         }
     )
     patronymic = models.CharField(verbose_name='Отчество', max_length=100, blank=True)

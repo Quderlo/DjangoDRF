@@ -12,12 +12,12 @@ def custom_validate_email(email):
     forbidden_domains = ['tempmail.com', 'example.com']
     domain = email.split('@')[1]
     if domain in forbidden_domains:
-        raise serializers.ValidationError({'email': 'Использование временных почтовых сервисов запрещено.'})
+        raise serializers.ValidationError({'email': 'Использование этих почтовых сервисов запрещено.'})
     return email
 
 
 def custom_validate_password(password):
-    # TODO: Добавить валидацию
+    # TODO: Добавить валидацию перед продом
     return password
 
 

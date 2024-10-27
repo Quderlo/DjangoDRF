@@ -1,8 +1,4 @@
-import re
-
 from rest_framework import serializers
-from rest_framework.fields import empty, SkipField
-
 from users.models import User
 from users.validations import custom_validate_register
 
@@ -18,17 +14,30 @@ class UserRegistrationsSerializer(serializers.ModelSerializer):
         model = User
         fields = ['email', 'password', 'last_name', 'first_name', 'patronymic', 'password']
         extra_kwargs = {
-            'email': {'required': False,},
-            'password': {'write_only': True, 'required': False,},
-            'last_name':{'required': False,},
-            'first_name':{'required': False,},
-            'patronymic':{'required': False,},
+            "email": {
+                "error_messages": {"required": "Укажите ваш email.", "blank": "Пожалуйста, заполните поле почты."}},
+            "password": {
+                "error_messages": {"required": "Введите пароль.", "blank": "Пожалуйста, заполните поле пароля."}},
+            "last_name": {
+                "error_messages": {"required": "Введите фамилию.", "blank": "Пожалуйста, заполните поле фамилии."}},
+            "first_name": {
+                "error_messages": {"required": "Введите имя.", "blank": "Пожалуйста, заполните поле имени."}},
         }
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            email=validated_data['email'],
+            password=validated_data['password'],
+            last_name=validated_data.get('last_name', ''),
+            first_name=validated_data.get('first_name', ''),
+            patronymic=validated_data.get('patronymic', ''),
+            is_active=False
+        )
+        return user
 
 
     def validate(self, data):
         custom_validate_register(data)
         return data
-
 
 
