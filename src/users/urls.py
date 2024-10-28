@@ -1,5 +1,4 @@
 from rest_framework import routers
-
 from users.views.registration import UserRegistrationView
 
 router = routers.DefaultRouter()
