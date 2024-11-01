@@ -60,7 +60,12 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(verbose_name='Имя пользователя', blank=True, null=True)
+    username = models.CharField(
+        verbose_name='Имя пользователя',
+        blank=True,
+        null=True,
+        max_length=128,
+    )
     password = models.CharField(
         verbose_name='Пароль',
         max_length=128,
